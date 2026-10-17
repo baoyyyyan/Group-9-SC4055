@@ -4,6 +4,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.feature_selection import mutual_info_classif, mutual_info_regression
 from sklearn.metrics import accuracy_score
+from sklearn.datasets import load_breast_cancer
 
 class BenchmarkBaselines:
     def __init__(self, X, y, k, lambda_weight = 1.0):
@@ -43,7 +44,6 @@ class BenchmarkBaselines:
         Uniform evaluate function for all the models
         Just plug your final selected feature indices into the function to get a score
         """
-        #NOTE Placeholder for my  own testing, feel free to change to evaluate using some different model
         if not features:
             return 0.0
         classif = RandomForestClassifier(random_state=self.answer_to_the_universe)
@@ -101,12 +101,30 @@ class BenchmarkBaselines:
 # Example of usage
 if __name__ == "__main__":
 
-    #TODO This could be any dataset we want, double check if they still want to use the breast cancer one
-    X, y = make_classification(
-        n_samples=1000, n_features=25, n_informative=8, n_redundant=8, random_state=42
-    )
+    # Dummy data for testing
+    # X, y = make_classification(
+    #     n_samples=1000, n_features=25, n_informative=8, n_redundant=8, random_state=42
+    # )
 
-    benchmark = BenchmarkBaselines(X, y, k=5, lambda_weight=1.0)
+    X, y = load_breast_cancer(return_X_y=True)
+    #NOTE If you use this dataset alone, because it is super clean already, feature selection actually underperforms just selecting everything
+    # I'm adding some noise to make it not so clean just for testing to make sure I'm actually selecting some features
+
+    """
+    The idea is Random Forest is my evaluation, Random Forest is inherently able to feature select so I try to overwhelm is with 
+    a crazy amount of noise, from  my tests at 500 noise top K now outperforms seelcting all and Greedy ties with it
+
+    Realistically for our project, this doesn't matter, ideally the QAOA will outperform the baselines and our goal is proven anyways
+    The breast cancer dataset is very clean and has some super correlated data points that should not be feature selected against anyways
+    It should be the case that any form of feature selection will lose to select all on the raw dataset itself from what I can tell
+    """
+    NUM_NOISE = 500 #Set to 0 if you don't want noise and want this program to run at a reasonable time
+    np.random.seed(42) #Seed again just in case you ran select random earlier which changes the seed too
+    noise = np.random.randn(X.shape[0], NUM_NOISE) #Create random noise in shape of dataset
+    X_noisy = np.hstack((X, noise)) #Glue noise to dataset
+
+
+    benchmark = BenchmarkBaselines(X_noisy, y, k=5, lambda_weight=1.0)
 
     feats_all = benchmark.select_all_features()
     feats_rand = benchmark.select_random()
