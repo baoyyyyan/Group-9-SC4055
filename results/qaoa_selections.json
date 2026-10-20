@@ -1,0 +1,109 @@
+{
+  "source": "qubo_selections.json",
+  "alpha": 0.5,
+  "p": 2,
+  "restarts": 6,
+  "shots": 2048,
+  "simulator": "qiskit.Statevector",
+  "by_k": {
+    "2": {
+      "qaoa": [
+        0,
+        4
+      ],
+      "feature_names": [
+        "mean radius",
+        "mean smoothness"
+      ],
+      "energy": -0.45900364448419495,
+      "expectation": -0.355601840590808,
+      "prob_opt": 0.036062932820661926,
+      "approx_ratio": 0.8172146961081835,
+      "bruteforce": [
+        0,
+        4
+      ],
+      "match": true
+    },
+    "3": {
+      "qaoa": [
+        0,
+        1,
+        4
+      ],
+      "feature_names": [
+        "mean radius",
+        "mean texture",
+        "mean smoothness"
+      ],
+      "energy": -0.49301109094371753,
+      "expectation": -0.18388145851875715,
+      "prob_opt": 0.0026657095299322483,
+      "approx_ratio": 0.675729221274495,
+      "bruteforce": [
+        0,
+        1,
+        4
+      ],
+      "match": true
+    },
+    "4": {
+      "qaoa": [
+        0,
+        1,
+        4,
+        8
+      ],
+      "feature_names": [
+        "mean radius",
+        "mean texture",
+        "mean smoothness",
+        "mean symmetry"
+      ],
+      "energy": -0.26980186280059115,
+      "expectation": 0.2520818786016786,
+      "prob_opt": 0.018674188305287737,
+      "approx_ratio": 0.6577627167698025,
+      "bruteforce": [
+        0,
+        1,
+        4,
+        8
+      ],
+      "match": true
+    },
+    "5": {
+      "qaoa": [
+        0,
+        1,
+        3,
+        4,
+        8
+      ],
+      "feature_names": [
+        "mean radius",
+        "mean texture",
+        "mean area",
+        "mean smoothness",
+        "mean symmetry"
+      ],
+      "energy": 0.19408838011968044,
+      "expectation": 0.6788903632834289,
+      "prob_opt": 0.05032309711183365,
+      "approx_ratio": 0.7809284106772522,
+      "bruteforce": [
+        0,
+        1,
+        3,
+        4,
+        8
+      ],
+      "match": true
+    }
+  },
+  "k3_runs": {
+    "hits": 20,
+    "runs": 20,
+    "restarts": 4
+  }
+}
