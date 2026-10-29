@@ -9,6 +9,7 @@ from qiskit.quantum_info import Statevector
 from scipy.optimize import minimize
 
 P, RESTARTS, SHOTS = 2, 6, 2048
+SHOT_COUNTS = (1, 5, 10, 20, 50, 100)
 ROOT = os.path.dirname(os.path.abspath(__file__))
 QUBO_PATH = os.path.join(ROOT, "results", "qubo_selections.json")
 
@@ -100,6 +101,18 @@ def indices(bitstring, n):
     return [i for i in range(n) if (bitstring >> i) & 1]
 
 
+def random_guess(energy, masks, shots=SHOTS, seed=0):
+    """Uniform sampling over all size-k subsets (= QAOA at gamma=beta=0), keep the best draw."""
+    rng = np.random.default_rng(seed)
+    draws = rng.choice(masks, size=shots)
+    return int(draws[np.argmin(energy[draws])])
+
+
+def success_curve(p_opt, shot_counts=SHOT_COUNTS):
+    """Chance that at least one of s shots lands on the optimum."""
+    return {str(s): float(1 - (1 - p_opt) ** s) for s in shot_counts}
+
+
 if __name__ == "__main__":
     qubo = load_qubo()
     names = qubo["feature_names"]
@@ -125,6 +138,9 @@ if __name__ == "__main__":
         chosen_idx = indices(pick, n)
         chosen = [names[i] for i in chosen_idx]
         brute = block["bruteforce"]
+        rand_p_opt = 1 / len(masks)
+        rand_ratio = (sub.max() - sub.mean()) / (sub.max() - sub.min())
+        rand_idx = indices(random_guess(energy, masks, seed=0), n)
         summary["by_k"][key] = {
             "qaoa": chosen_idx,
             "feature_names": chosen,
@@ -134,22 +150,42 @@ if __name__ == "__main__":
             "approx_ratio": float(ratio),
             "bruteforce": brute,
             "match": chosen_idx == brute,
+            "random": {
+                "pick": rand_idx,
+                "match": rand_idx == brute,
+                "expectation": float(sub.mean()),
+                "prob_opt": rand_p_opt,
+                "approx_ratio": float(rand_ratio),
+            },
+            "prob_opt_gain": p_opt / rand_p_opt,
+            "success_by_shots": {
+                "qaoa": success_curve(p_opt),
+                "random": success_curve(rand_p_opt),
+            },
         }
         same = "same" if chosen_idx == brute else "miss"
         print(f"k={k}: QAOA {chosen_idx}  E={energy[pick]:.4f}  brute {brute}  ({same})")
         print(f"     {chosen}   P(opt)={p_opt:.3f}  <E>={expect:.4f}  ratio={ratio:.3f}")
+        print(f"     random: P(opt)={rand_p_opt:.3f}  <E>={sub.mean():.4f}  ratio={rand_ratio:.3f}"
+              f"  -> QAOA P(opt) x{p_opt / rand_p_opt:.2f}")
+        q_curve, r_curve = success_curve(p_opt), success_curve(rand_p_opt)
+        print("     P(hit opt) by shots  " + "  ".join(
+            f"{s}: {q_curve[str(s)]:.2f}/{r_curve[str(s)]:.2f}" for s in SHOT_COUNTS) + "  (QAOA/random)")
 
     if "3" in qubo["by_k"]:
         block = qubo["by_k"]["3"]
         Q, const = np.array(block["Q"], dtype=float), float(block["const"])
         brute = block["bruteforce"]
         n_runs = 20
-        hits = 0
+        energy = bit_energies(Q, const)
+        masks = np.array([sum(1 << i for i in c) for c in combinations(range(len(Q)), 3)])
+        hits, rand_hits = 0, 0
         for seed in range(n_runs):
             pick, _, _, _ = qaoa(Q, const, 3, restarts=4, seed=seed)
             hits += indices(pick, len(Q)) == brute
-        summary["k3_runs"] = {"hits": hits, "runs": n_runs, "restarts": 4}
-        print(f"k=3: exact optimum in {hits}/{n_runs} runs")
+            rand_hits += indices(random_guess(energy, masks, seed=seed), len(Q)) == brute
+        summary["k3_runs"] = {"hits": hits, "random_hits": rand_hits, "runs": n_runs, "restarts": 4}
+        print(f"k=3: exact optimum in {hits}/{n_runs} runs (random guessing, same shots: {rand_hits}/{n_runs})")
 
     out_dir = os.path.join(ROOT, "results")
     os.makedirs(out_dir, exist_ok=True)
