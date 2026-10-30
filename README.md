@@ -25,6 +25,7 @@ pip install -r requirements.txt
 | `qaoa.py` | QAOA in Qiskit: Dicke start state (only size-k subsets), XY mixer, COBYLA; comparison with random guessing |
 | `run_experiments.py` | Main experiment: every method on the same train/test splits, scored by test accuracy |
 | `qaoa_depth.py` | QAOA vs random guessing across circuit depth p (p = 0 is random guessing) |
+| `qaoa_noise.py` | Optimised QAOA circuits re-run with depolarizing gate noise (Qiskit Aer density-matrix simulator) |
 
 ## Reproducing the results
 
@@ -36,6 +37,7 @@ python run_experiments.py                                   -> results/experimen
 python run_experiments.py --scoring mi --alpha cv           # mutual-information scores, alpha picked by CV on training rows
 python qaoa_depth.py                                        -> results/experiments/qaoa_depth_*.csv/png (independent random restarts per depth)
 python qaoa_depth.py --init interp                          # layer-by-layer warm start (INTERP)
+python qaoa_noise.py                                        -> results/experiments/qaoa_noise_*.csv/png
 ```
 
 Add `--help` to any script for its options (number of splits, budgets k, alpha, scoring, depths, restarts, workers).

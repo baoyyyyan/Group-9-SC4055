@@ -124,6 +124,7 @@ def run_interp(job):
         expect = float(np.dot(pr, energy))
         p_opt = float(pr[masks[np.argmin(sub)]])
         rows.append(metrics(split, k, p, seed, sub, expect, p_opt, time.perf_counter() - t0))
+        rows[-1]["params"] = best.x.tolist()  # reused by qaoa_noise.py
     return rows
 
 
