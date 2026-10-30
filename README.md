@@ -35,13 +35,18 @@ Run `notebooks/2_qubo_and_bruteforce.ipynb` from the `notebooks/` folder first (
 python qaoa.py                                              -> results/qaoa_selections.json
 python run_experiments.py                                   -> results/experiments/accuracy_*.csv, summary_*.csv, accuracy_vs_k_*.png
 python run_experiments.py --scoring mi --alpha cv           # mutual-information scores, alpha picked by CV on training rows
+python run_experiments.py --no-qaoa --scoring corr --alpha 0.7   # alpha sweep: 0.5..0.9 and cv, for corr and mi
 python qaoa_depth.py                                        -> results/experiments/qaoa_depth_*.csv/png (independent random restarts per depth)
 python qaoa_depth.py --init interp                          # layer-by-layer warm start (INTERP)
-python qaoa_noise.py                                        -> results/experiments/qaoa_noise_*.csv/png
 python run_experiments.py --noise-features 4                # add 4 pure-noise columns (14 qubits; QAOA practical up to ~4)
 python run_experiments.py --no-qaoa --noise-features 10     # classical methods only for more noise columns
 python plot_data_noise.py --scoring mi --alpha cv           # combine the noise-column runs -> results/experiments/data_noise_*.png
+python qaoa_noise.py                                        -> results/experiments/qaoa_noise_*.csv/png (side experiment: gate noise)
 ```
+
+Data-noise runs: 2, 4, 6, 8 and 10 noise columns with `--scoring corr --alpha 0.5` (QAOA included up to 4),
+and with `--scoring mi --alpha cv --no-qaoa`.
+The exact settings of every run are saved next to its results as `config_*.json`.
 
 Add `--help` to any script for its options (number of splits, budgets k, alpha, scoring, depths, restarts, workers).
 
