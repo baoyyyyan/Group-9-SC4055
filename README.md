@@ -38,6 +38,9 @@ python run_experiments.py --scoring mi --alpha cv           # mutual-information
 python qaoa_depth.py                                        -> results/experiments/qaoa_depth_*.csv/png (independent random restarts per depth)
 python qaoa_depth.py --init interp                          # layer-by-layer warm start (INTERP)
 python qaoa_noise.py                                        -> results/experiments/qaoa_noise_*.csv/png
+python run_experiments.py --noise-features 4                # add 4 pure-noise columns (14 qubits; QAOA practical up to ~4)
+python run_experiments.py --no-qaoa --noise-features 10     # classical methods only for more noise columns
+python plot_data_noise.py --scoring mi --alpha cv           # combine the noise-column runs -> results/experiments/data_noise_*.png
 ```
 
 Add `--help` to any script for its options (number of splits, budgets k, alpha, scoring, depths, restarts, workers).

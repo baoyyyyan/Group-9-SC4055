@@ -55,9 +55,15 @@ class SharedProblem(BenchmarkBaselines):
         return accuracy_score(self.y_test, model.predict(self.X_test[:, features]))
 
 
-def load_data():
+def load_data(noise_features=0, seed=42):
+    """The 10 'mean' features, plus optional columns of pure Gaussian noise (as in baselines.py)
+    to test whether a method avoids useless features. One feature = one qubit for QAOA."""
     data = load_breast_cancer()
-    return data.data[:, :10], data.target, [str(n) for n in data.feature_names[:10]]
+    X, names = data.data[:, :10], [str(n) for n in data.feature_names[:10]]
+    if noise_features:
+        noise = np.random.default_rng(seed).standard_normal((X.shape[0], noise_features))
+        X, names = np.hstack([X, noise]), names + [f"noise_{i}" for i in range(noise_features)]
+    return X, data.target, names
 
 
 def select(method, problem, Q, const, k, seed, args):
@@ -96,7 +102,7 @@ def choose_alpha(X_tr, y_tr, k, scoring, grid=ALPHA_GRID, folds=5):
 
 
 def run(args):
-    X, y, names = load_data()
+    X, y, names = load_data(args.noise_features)
     methods = [m for m in METHODS if not (args.no_qaoa and m == "qaoa")]
     rows = []
     for split in range(args.splits):
@@ -122,6 +128,7 @@ def run(args):
                     "alpha": alpha,
                     "features": feats,
                     "feature_names": [names[i] for i in feats],
+                    "n_noise_selected": sum(names[i].startswith("noise_") for i in feats),
                     "qubo_energy": float(energy[mask]) if method != "all" else None,
                     "acc_rf": problem.evaluate(feats),
                     "acc_logreg": problem.evaluate_logreg(feats),
@@ -148,6 +155,7 @@ def summarise(df):
                    acc_lr_mean=("acc_logreg", "mean"), acc_lr_std=("acc_logreg", "std"),
                    energy_gap_mean=("energy_gap", "mean"),
                    optimal_rate=("energy_gap", lambda g: float(np.mean(np.isclose(g, 0)))),
+                   n_noise_selected=("n_noise_selected", "mean"),
                    seconds=("select_seconds", "mean"))
               .reset_index())
 
@@ -161,7 +169,7 @@ def plot(summary, path):
                 continue
             s = summary[summary.method == method]
             ax.errorbar(s.k, s[f"{col}_mean"], yerr=s[f"{col}_std"], marker="o", capsize=3, label=method)
-        ax.axhline(all_row[f"{col}_mean"], color="grey", ls="--", label="all 10 features")
+        ax.axhline(all_row[f"{col}_mean"], color="grey", ls="--", label=f"all {int(all_row.k)} features")
         ax.set_title(title)
         ax.set_xlabel("feature budget k")
         ax.set_xticks(sorted(summary[summary.method != "all"].k.unique()))
@@ -181,12 +189,14 @@ if __name__ == "__main__":
     parser.add_argument("--p", type=int, default=2)
     parser.add_argument("--restarts", type=int, default=6)
     parser.add_argument("--no-qaoa", action="store_true")
+    parser.add_argument("--noise-features", type=int, default=0,
+                        help="append this many pure-noise columns (QAOA is practical up to ~4, i.e. 14 qubits)")
     args = parser.parse_args()
 
     df = add_energy_gap(run(args))
     summary = summarise(df)
     os.makedirs(OUT_DIR, exist_ok=True)
-    tag = f"{args.scoring}_a{args.alpha}"
+    tag = f"{args.scoring}_a{args.alpha}" + (f"_noise{args.noise_features}" if args.noise_features else "")
     df.to_csv(os.path.join(OUT_DIR, f"accuracy_{tag}.csv"), index=False)
     summary.to_csv(os.path.join(OUT_DIR, f"summary_{tag}.csv"), index=False)
     with open(os.path.join(OUT_DIR, f"config_{tag}.json"), "w") as f:
