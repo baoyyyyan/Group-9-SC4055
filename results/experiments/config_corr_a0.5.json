@@ -1,0 +1,14 @@
+{
+  "splits": 5,
+  "ks": [
+    2,
+    3,
+    4,
+    5
+  ],
+  "alpha": "0.5",
+  "scoring": "corr",
+  "p": 2,
+  "restarts": 6,
+  "no_qaoa": false
+}

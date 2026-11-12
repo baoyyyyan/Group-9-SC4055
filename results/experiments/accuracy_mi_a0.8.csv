@@ -1,0 +1,106 @@
+split,k,method,features,feature_names,qubo_energy,acc_rf,acc_logreg,select_seconds,energy_gap
+0,10,all,"[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]","['mean radius', 'mean texture', 'mean perimeter', 'mean area', 'mean smoothness', 'mean compactness', 'mean concavity', 'mean concave points', 'mean symmetry', 'mean fractal dimension']",,0.9239766081871345,0.9181286549707602,1.550000160932541e-05,
+0,2,random,"[2, 8]","['mean perimeter', 'mean symmetry']",-0.3363246502900532,0.8830409356725146,0.8713450292397661,9.159999899566174e-05,0.22911386226842367
+0,2,top_k,"[2, 7]","['mean perimeter', 'mean concave points']",-0.5647179752442453,0.8830409356725146,0.9005847953216374,4.810001701116562e-05,0.0007205373142316063
+0,2,greedy,"[1, 7]","['mean texture', 'mean concave points']",-0.4160195895861927,0.8947368421052632,0.9122807017543859,0.00019079999765381217,0.1494189229722842
+0,2,brute_force,"[3, 7]","['mean area', 'mean concave points']",-0.5654385125584769,0.8888888888888888,0.9005847953216374,0.0006837000255472958,0.0
+0,2,sim_annealing,"[3, 7]","['mean area', 'mean concave points']",-0.5654385125584769,0.8888888888888888,0.9005847953216374,0.298124299995834,0.0
+0,3,random,"[2, 4, 8]","['mean perimeter', 'mean smoothness', 'mean symmetry']",-0.36731410373758244,0.8771929824561403,0.8888888888888888,9.820002014748752e-05,0.24671074562042783
+0,3,top_k,"[2, 6, 7]","['mean perimeter', 'mean concavity', 'mean concave points']",-0.5800147314393467,0.9122807017543859,0.9064327485380117,3.0099996365606785e-05,0.034010117918663596
+0,3,greedy,"[1, 3, 7]","['mean texture', 'mean area', 'mean concave points']",-0.6140248493580103,0.9239766081871345,0.9181286549707602,0.00030369998421519995,0.0
+0,3,brute_force,"[1, 3, 7]","['mean texture', 'mean area', 'mean concave points']",-0.6140248493580103,0.9239766081871345,0.9181286549707602,0.0010460000194143504,0.0
+0,3,sim_annealing,"[1, 3, 7]","['mean texture', 'mean area', 'mean concave points']",-0.6140248493580103,0.9239766081871345,0.9181286549707602,0.2857501999824308,0.0
+0,4,random,"[2, 4, 8, 9]","['mean perimeter', 'mean smoothness', 'mean symmetry', 'mean fractal dimension']",-0.2764792008218677,0.8947368421052632,0.9005847953216374,0.00010090001160278916,0.3732988832631712
+0,4,top_k,"[2, 3, 6, 7]","['mean perimeter', 'mean area', 'mean concavity', 'mean concave points']",-0.1644243359671762,0.9064327485380117,0.9005847953216374,3.070000093430281e-05,0.4853537481178627
+0,4,greedy,"[1, 3, 4, 7]","['mean texture', 'mean area', 'mean smoothness', 'mean concave points']",-0.6373637970205976,0.9239766081871345,0.9239766081871345,0.0003994999860879034,0.012414287064441254
+0,4,brute_force,"[1, 3, 5, 7]","['mean texture', 'mean area', 'mean compactness', 'mean concave points']",-0.6497780840850389,0.9181286549707602,0.9239766081871345,0.001192399999126792,0.0
+0,4,sim_annealing,"[1, 3, 5, 7]","['mean texture', 'mean area', 'mean compactness', 'mean concave points']",-0.6497780840850389,0.9181286549707602,0.9239766081871345,0.28960320001351647,0.0
+0,5,random,"[1, 2, 4, 8, 9]","['mean texture', 'mean perimeter', 'mean smoothness', 'mean symmetry', 'mean fractal dimension']",-0.32212441924280455,0.8830409356725146,0.8947368421052632,8.349999552592635e-05,0.29470199054954094
+0,5,top_k,"[0, 2, 3, 6, 7]","['mean radius', 'mean perimeter', 'mean area', 'mean concavity', 'mean concave points']",0.9999398207161647,0.9181286549707602,0.9005847953216374,2.780000795610249e-05,1.6167662305085102
+0,5,greedy,"[1, 3, 4, 5, 7]","['mean texture', 'mean area', 'mean smoothness', 'mean compactness', 'mean concave points']",-0.6168264097923455,0.9181286549707602,0.9239766081871345,0.0005070000188425183,0.0
+0,5,brute_force,"[1, 3, 4, 5, 7]","['mean texture', 'mean area', 'mean smoothness', 'mean compactness', 'mean concave points']",-0.6168264097923455,0.9181286549707602,0.9239766081871345,0.0006521999894175678,0.0
+0,5,sim_annealing,"[1, 3, 4, 5, 7]","['mean texture', 'mean area', 'mean smoothness', 'mean compactness', 'mean concave points']",-0.6168264097923455,0.9181286549707602,0.9239766081871345,0.3043822000036016,0.0
+1,10,all,"[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]","['mean radius', 'mean texture', 'mean perimeter', 'mean area', 'mean smoothness', 'mean compactness', 'mean concavity', 'mean concave points', 'mean symmetry', 'mean fractal dimension']",,0.9298245614035088,0.9298245614035088,1.3399985618889332e-05,
+1,2,random,"[2, 9]","['mean perimeter', 'mean fractal dimension']",-0.2776939839243022,0.8713450292397661,0.9239766081871345,8.599998545832932e-05,0.2673462209591557
+1,2,top_k,"[0, 7]","['mean radius', 'mean concave points']",-0.545040204883458,0.9122807017543859,0.935672514619883,2.950002090074122e-05,0.0
+1,2,greedy,"[1, 7]","['mean texture', 'mean concave points']",-0.4238962435873157,0.935672514619883,0.9298245614035088,0.00018239999189972878,0.12114396129614224
+1,2,brute_force,"[0, 7]","['mean radius', 'mean concave points']",-0.545040204883458,0.9122807017543859,0.935672514619883,0.0010433999996166676,0.0
+1,2,sim_annealing,"[0, 7]","['mean radius', 'mean concave points']",-0.545040204883458,0.9122807017543859,0.935672514619883,0.3398038000159431,0.0
+1,3,random,"[2, 6, 9]","['mean perimeter', 'mean concavity', 'mean fractal dimension']",-0.49001477612996425,0.9005847953216374,0.9064327485380117,0.0017698999727144837,0.1312040431598085
+1,3,top_k,"[0, 6, 7]","['mean radius', 'mean concavity', 'mean concave points']",-0.5541794200161707,0.9122807017543859,0.9298245614035088,2.680000034160912e-05,0.06703939927360203
+1,3,greedy,"[0, 1, 7]","['mean radius', 'mean texture', 'mean concave points']",-0.6212188192897727,0.9239766081871345,0.9415204678362573,0.0008021999965421855,0.0
+1,3,brute_force,"[0, 1, 7]","['mean radius', 'mean texture', 'mean concave points']",-0.6212188192897727,0.9239766081871345,0.9415204678362573,0.001020300027448684,0.0
+1,3,sim_annealing,"[0, 1, 7]","['mean radius', 'mean texture', 'mean concave points']",-0.6212188192897727,0.9239766081871345,0.9415204678362573,0.3394675999879837,0.0
+1,4,random,"[2, 4, 6, 9]","['mean perimeter', 'mean smoothness', 'mean concavity', 'mean fractal dimension']",-0.4748089089911147,0.9122807017543859,0.9298245614035088,8.890000754036009e-05,0.16728788948503137
+1,4,top_k,"[0, 2, 6, 7]","['mean radius', 'mean perimeter', 'mean concavity', 'mean concave points']",-0.08279885485064042,0.9064327485380117,0.935672514619883,3.029999788850546e-05,0.5592979436255057
+1,4,greedy,"[0, 1, 7, 8]","['mean radius', 'mean texture', 'mean concave points', 'mean symmetry']",-0.6382594958734202,0.9239766081871345,0.9415204678362573,0.0004109000146854669,0.003837302602725856
+1,4,brute_force,"[0, 1, 5, 7]","['mean radius', 'mean texture', 'mean compactness', 'mean concave points']",-0.6420967984761461,0.9298245614035088,0.9415204678362573,0.0006321000109892339,0.0
+1,4,sim_annealing,"[0, 1, 5, 7]","['mean radius', 'mean texture', 'mean compactness', 'mean concave points']",-0.6420967984761461,0.9298245614035088,0.9415204678362573,0.30828090000431985,0.0
+1,5,random,"[0, 2, 4, 6, 9]","['mean radius', 'mean perimeter', 'mean smoothness', 'mean concavity', 'mean fractal dimension']",-0.10049435682176266,0.9181286549707602,0.9239766081871345,8.6199986981228e-05,0.5176350912000558
+1,5,top_k,"[0, 2, 3, 6, 7]","['mean radius', 'mean perimeter', 'mean area', 'mean concavity', 'mean concave points']",1.043706776593993,0.9122807017543859,0.9298245614035088,3.0399998649954796e-05,1.6618362246158114
+1,5,greedy,"[0, 1, 5, 7, 8]","['mean radius', 'mean texture', 'mean compactness', 'mean concave points', 'mean symmetry']",-0.6181294480218185,0.9181286549707602,0.9415204678362573,0.0004692999937105924,0.0
+1,5,brute_force,"[0, 1, 5, 7, 8]","['mean radius', 'mean texture', 'mean compactness', 'mean concave points', 'mean symmetry']",-0.6181294480218185,0.9181286549707602,0.9415204678362573,0.0009778999956324697,0.0
+1,5,sim_annealing,"[0, 1, 5, 7, 8]","['mean radius', 'mean texture', 'mean compactness', 'mean concave points', 'mean symmetry']",-0.6181294480218185,0.9181286549707602,0.9415204678362573,0.30971329999738373,0.0
+2,10,all,"[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]","['mean radius', 'mean texture', 'mean perimeter', 'mean area', 'mean smoothness', 'mean compactness', 'mean concavity', 'mean concave points', 'mean symmetry', 'mean fractal dimension']",,0.9415204678362573,0.9415204678362573,1.1600001016631722e-05,
+2,2,random,"[1, 4]","['mean texture', 'mean smoothness']",-0.1410252379188348,0.8070175438596491,0.8070175438596491,8.189998334273696e-05,0.4031463297173312
+2,2,top_k,"[2, 7]","['mean perimeter', 'mean concave points']",-0.544171567636166,0.9239766081871345,0.9064327485380117,2.9199989512562752e-05,0.0
+2,2,greedy,"[2, 4]","['mean perimeter', 'mean smoothness']",-0.38129162078601375,0.8888888888888888,0.9005847953216374,0.00015120001626200974,0.16287994685015228
+2,2,brute_force,"[2, 7]","['mean perimeter', 'mean concave points']",-0.544171567636166,0.9239766081871345,0.9064327485380117,0.002765999990515411,0.0
+2,2,sim_annealing,"[2, 7]","['mean perimeter', 'mean concave points']",-0.544171567636166,0.9239766081871345,0.9064327485380117,0.4710833999852184,0.0
+2,3,random,"[1, 4, 5]","['mean texture', 'mean smoothness', 'mean compactness']",-0.23453230813469617,0.8362573099415205,0.8538011695906432,9.290000889450312e-05,0.359589790606222
+2,3,top_k,"[2, 3, 7]","['mean perimeter', 'mean area', 'mean concave points']",-0.22687687838716286,0.9064327485380117,0.9064327485380117,3.0199997127056122e-05,0.3672452203537553
+2,3,greedy,"[2, 4, 6]","['mean perimeter', 'mean smoothness', 'mean concavity']",-0.5671065693969002,0.935672514619883,0.9239766081871345,0.00029899997753091156,0.027015529344017963
+2,3,brute_force,"[1, 2, 7]","['mean texture', 'mean perimeter', 'mean concave points']",-0.5941220987409181,0.9181286549707602,0.9298245614035088,0.000825399998575449,0.0
+2,3,sim_annealing,"[1, 2, 7]","['mean texture', 'mean perimeter', 'mean concave points']",-0.5941220987409181,0.9181286549707602,0.9298245614035088,0.35460089999833144,0.0
+2,4,random,"[0, 1, 4, 5]","['mean radius', 'mean texture', 'mean smoothness', 'mean compactness']",-0.48296023383234044,0.9415204678362573,0.9298245614035088,8.72999953571707e-05,0.13303127508009638
+2,4,top_k,"[0, 2, 3, 7]","['mean radius', 'mean perimeter', 'mean area', 'mean concave points']",0.8412625113037642,0.9239766081871345,0.9064327485380117,3.0099996365606785e-05,1.457254020216201
+2,4,greedy,"[1, 2, 4, 6]","['mean texture', 'mean perimeter', 'mean smoothness', 'mean concavity']",-0.6159915089124368,0.935672514619883,0.9298245614035088,0.0004047999973408878,0.0
+2,4,brute_force,"[1, 2, 4, 6]","['mean texture', 'mean perimeter', 'mean smoothness', 'mean concavity']",-0.6159915089124368,0.935672514619883,0.9298245614035088,0.000667800020892173,0.0
+2,4,sim_annealing,"[1, 2, 4, 6]","['mean texture', 'mean perimeter', 'mean smoothness', 'mean concavity']",-0.6159915089124368,0.935672514619883,0.9298245614035088,0.33795349998399615,0.0
+2,5,random,"[0, 1, 4, 5, 7]","['mean radius', 'mean texture', 'mean smoothness', 'mean compactness', 'mean concave points']",-0.5319789317685846,0.9298245614035088,0.9298245614035088,0.003587199986213818,0.04553289122129911
+2,5,top_k,"[0, 2, 3, 6, 7]","['mean radius', 'mean perimeter', 'mean area', 'mean concavity', 'mean concave points']",0.9825885517509647,0.9239766081871345,0.9122807017543859,3.060000017285347e-05,1.5601003747408484
+2,5,greedy,"[1, 2, 4, 6, 8]","['mean texture', 'mean perimeter', 'mean smoothness', 'mean concavity', 'mean symmetry']",-0.57618952046505,0.935672514619883,0.9298245614035088,0.0004865999799221754,0.001322302524833674
+2,5,brute_force,"[1, 3, 4, 6, 8]","['mean texture', 'mean area', 'mean smoothness', 'mean concavity', 'mean symmetry']",-0.5775118229898837,0.9473684210526315,0.9298245614035088,0.0006607999966945499,0.0
+2,5,sim_annealing,"[1, 3, 4, 6, 8]","['mean texture', 'mean area', 'mean smoothness', 'mean concavity', 'mean symmetry']",-0.5775118229898837,0.9473684210526315,0.9298245614035088,0.337875700002769,0.0
+3,10,all,"[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]","['mean radius', 'mean texture', 'mean perimeter', 'mean area', 'mean smoothness', 'mean compactness', 'mean concavity', 'mean concave points', 'mean symmetry', 'mean fractal dimension']",,0.9415204678362573,0.9532163742690059,1.1900003300979733e-05,
+3,2,random,"[4, 5]","['mean smoothness', 'mean compactness']",-0.19769109928618356,0.8187134502923976,0.7777777777777778,8.410000009462237e-05,0.35325261567430744
+3,2,top_k,"[2, 7]","['mean perimeter', 'mean concave points']",-0.5444881825860985,0.9122807017543859,0.935672514619883,2.780000795610249e-05,0.0064555323743924475
+3,2,greedy,"[1, 7]","['mean texture', 'mean concave points']",-0.4208904667242752,0.9298245614035088,0.9239766081871345,0.00018770000315271318,0.13005324823621578
+3,2,brute_force,"[3, 7]","['mean area', 'mean concave points']",-0.550943714960491,0.9122807017543859,0.9239766081871345,0.0008251999970525503,0.0
+3,2,sim_annealing,"[3, 7]","['mean area', 'mean concave points']",-0.550943714960491,0.9122807017543859,0.9239766081871345,0.3929671999940183,0.0
+3,3,random,"[1, 4, 5]","['mean texture', 'mean smoothness', 'mean compactness']",-0.2670205657024134,0.8245614035087719,0.8187134502923976,8.960001287050545e-05,0.3549094010879674
+3,3,top_k,"[2, 3, 7]","['mean perimeter', 'mean area', 'mean concave points']",-0.22477581265775548,0.9239766081871345,0.9239766081871345,2.8499984182417393e-05,0.39715415413262534
+3,3,greedy,"[1, 3, 7]","['mean texture', 'mean area', 'mean concave points']",-0.6219299667903808,0.9473684210526315,0.9473684210526315,0.0003012999950442463,0.0
+3,3,brute_force,"[1, 3, 7]","['mean texture', 'mean area', 'mean concave points']",-0.6219299667903808,0.9473684210526315,0.9473684210526315,0.0007755999977234751,0.0
+3,3,sim_annealing,"[1, 3, 7]","['mean texture', 'mean area', 'mean concave points']",-0.6219299667903808,0.9473684210526315,0.9473684210526315,0.366539400012698,0.0
+3,4,random,"[1, 2, 4, 5]","['mean texture', 'mean perimeter', 'mean smoothness', 'mean compactness']",-0.5071467836442736,0.9239766081871345,0.935672514619883,8.570001227781177e-05,0.13620089793032975
+3,4,top_k,"[0, 2, 3, 7]","['mean radius', 'mean perimeter', 'mean area', 'mean concave points']",0.8644077398283088,0.9122807017543859,0.9239766081871345,3.070000093430281e-05,1.507755421402912
+3,4,greedy,"[1, 3, 7, 8]","['mean texture', 'mean area', 'mean concave points', 'mean symmetry']",-0.6413235399910278,0.9298245614035088,0.9532163742690059,0.00038690000656060874,0.002024141583575556
+3,4,brute_force,"[1, 3, 4, 7]","['mean texture', 'mean area', 'mean smoothness', 'mean concave points']",-0.6433476815746033,0.9473684210526315,0.9473684210526315,0.0006461000011768192,0.0
+3,4,sim_annealing,"[1, 3, 4, 7]","['mean texture', 'mean area', 'mean smoothness', 'mean concave points']",-0.6433476815746033,0.9473684210526315,0.9473684210526315,0.5429008999781217,0.0
+3,5,random,"[1, 2, 4, 5, 9]","['mean texture', 'mean perimeter', 'mean smoothness', 'mean compactness', 'mean fractal dimension']",-0.42738770696344375,0.9239766081871345,0.9415204678362573,9.720001253299415e-05,0.1862721545262147
+3,5,top_k,"[0, 2, 3, 6, 7]","['mean radius', 'mean perimeter', 'mean area', 'mean concavity', 'mean concave points']",1.0175046090864512,0.9181286549707602,0.9298245614035088,2.820001100189984e-05,1.6311644705761097
+3,5,greedy,"[1, 3, 4, 7, 8]","['mean texture', 'mean area', 'mean smoothness', 'mean concave points', 'mean symmetry']",-0.6136598614896585,0.9473684210526315,0.9532163742690059,0.0004975000047124922,0.0
+3,5,brute_force,"[1, 3, 4, 7, 8]","['mean texture', 'mean area', 'mean smoothness', 'mean concave points', 'mean symmetry']",-0.6136598614896585,0.9473684210526315,0.9532163742690059,0.0006935999845154583,0.0
+3,5,sim_annealing,"[1, 3, 4, 7, 8]","['mean texture', 'mean area', 'mean smoothness', 'mean concave points', 'mean symmetry']",-0.6136598614896585,0.9473684210526315,0.9532163742690059,0.3135630000033416,0.0
+4,10,all,"[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]","['mean radius', 'mean texture', 'mean perimeter', 'mean area', 'mean smoothness', 'mean compactness', 'mean concavity', 'mean concave points', 'mean symmetry', 'mean fractal dimension']",,0.9473684210526315,0.9239766081871345,1.1299998732283711e-05,
+4,2,random,"[3, 8]","['mean area', 'mean symmetry']",-0.3425648198032283,0.9005847953216374,0.8713450292397661,8.159998105838895e-05,0.23079990078958357
+4,2,top_k,"[2, 7]","['mean perimeter', 'mean concave points']",-0.5594696366674796,0.9005847953216374,0.9122807017543859,2.8600014047697186e-05,0.01389508392533223
+4,2,greedy,"[1, 7]","['mean texture', 'mean concave points']",-0.41695513967433584,0.9064327485380117,0.9122807017543859,0.00019550000433810055,0.156409580918476
+4,2,brute_force,"[3, 7]","['mean area', 'mean concave points']",-0.5733647205928118,0.9064327485380117,0.9122807017543859,0.0006618000043090433,0.0
+4,2,sim_annealing,"[3, 7]","['mean area', 'mean concave points']",-0.5733647205928118,0.9064327485380117,0.9122807017543859,0.26301699999021366,0.0
+4,3,random,"[3, 4, 8]","['mean area', 'mean smoothness', 'mean symmetry']",-0.37040959117215877,0.9005847953216374,0.9005847953216374,8.699999307282269e-05,0.2493044752434983
+4,3,top_k,"[0, 2, 7]","['mean radius', 'mean perimeter', 'mean concave points']",-0.19826714665399692,0.9064327485380117,0.9122807017543859,2.720000338740647e-05,0.42144691976166015
+4,3,greedy,"[1, 3, 7]","['mean texture', 'mean area', 'mean concave points']",-0.6197140664156571,0.9239766081871345,0.9239766081871345,0.00029669998912140727,0.0
+4,3,brute_force,"[1, 3, 7]","['mean texture', 'mean area', 'mean concave points']",-0.6197140664156571,0.9239766081871345,0.9239766081871345,0.0006590000120922923,0.0
+4,3,sim_annealing,"[1, 3, 7]","['mean texture', 'mean area', 'mean concave points']",-0.6197140664156571,0.9239766081871345,0.9239766081871345,0.3182645000051707,0.0
+4,4,random,"[3, 4, 8, 9]","['mean area', 'mean smoothness', 'mean symmetry', 'mean fractal dimension']",-0.3362376701484706,0.8888888888888888,0.8947368421052632,0.0001409000251442194,0.30987202795159874
+4,4,top_k,"[0, 2, 6, 7]","['mean radius', 'mean perimeter', 'mean concavity', 'mean concave points']",-0.12656351540535127,0.9064327485380117,0.9122807017543859,2.9799994081258774e-05,0.5195461826947181
+4,4,greedy,"[1, 3, 4, 7]","['mean texture', 'mean area', 'mean smoothness', 'mean concave points']",-0.6461096981000694,0.935672514619883,0.9298245614035088,0.0004017000028397888,0.0
+4,4,brute_force,"[1, 3, 4, 7]","['mean texture', 'mean area', 'mean smoothness', 'mean concave points']",-0.6461096981000694,0.935672514619883,0.9298245614035088,0.0027347999857738614,0.0
+4,4,sim_annealing,"[1, 3, 4, 7]","['mean texture', 'mean area', 'mean smoothness', 'mean concave points']",-0.6461096981000694,0.935672514619883,0.9298245614035088,0.5192511000204831,0.0
+4,5,random,"[2, 3, 4, 8, 9]","['mean perimeter', 'mean area', 'mean smoothness', 'mean symmetry', 'mean fractal dimension']",-0.06731373744500502,0.9122807017543859,0.9005847953216374,0.00010309999925084412,0.5478590630837914
+4,5,top_k,"[0, 2, 3, 6, 7]","['mean radius', 'mean perimeter', 'mean area', 'mean concavity', 'mean concave points']",0.9732624611333875,0.9181286549707602,0.9122807017543859,3.15000070258975e-05,1.588435261662184
+4,5,greedy,"[1, 3, 4, 7, 9]","['mean texture', 'mean area', 'mean smoothness', 'mean concave points', 'mean fractal dimension']",-0.6142983494479921,0.9298245614035088,0.9415204678362573,0.0005002999969292432,0.000874451080804306
+4,5,brute_force,"[1, 3, 6, 7, 9]","['mean texture', 'mean area', 'mean concavity', 'mean concave points', 'mean fractal dimension']",-0.6151728005287964,0.9415204678362573,0.9298245614035088,0.0006529999955091625,0.0
+4,5,sim_annealing,"[1, 3, 6, 7, 9]","['mean texture', 'mean area', 'mean concavity', 'mean concave points', 'mean fractal dimension']",-0.6151728005287964,0.9415204678362573,0.9298245614035088,0.27506329998141155,0.0
