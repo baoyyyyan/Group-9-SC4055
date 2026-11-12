@@ -26,6 +26,8 @@ pip install -r requirements.txt
 | `run_experiments.py` | Main experiment: every method on the same train/test splits, scored by test accuracy |
 | `qaoa_depth.py` | QAOA vs random guessing across circuit depth p (p = 0 is random guessing) |
 | `qaoa_noise.py` | Optimised QAOA circuits re-run with depolarizing gate noise (Qiskit Aer density-matrix simulator) |
+| `scale_check.py` | Scale check on all 30 features (classical only): exact QUBO optimum over all size-k subsets vs greedy, top-k, random and simulated annealing |
+| `plot_scale.py` | Plots the scale check: accuracy and QUBO energy gap vs k |
 
 ## Reproducing the results
 
@@ -42,6 +44,8 @@ python run_experiments.py --noise-features 4                # add 4 pure-noise c
 python run_experiments.py --no-qaoa --noise-features 10     # classical methods only for more noise columns
 python plot_data_noise.py --scoring mi --alpha cv           # combine the noise-column runs -> results/experiments/data_noise_*.png
 python qaoa_noise.py                                        -> results/experiments/qaoa_noise_*.csv/png (side experiment: gate noise)
+python scale_check.py                                       -> results/experiments/scale_30_corr_a0.5.csv, scale_summary_30_corr_a0.5.csv (30 features, no QAOA)
+python plot_scale.py                                        -> results/experiments/scale_30_corr_a0.5.png
 ```
 
 Data-noise runs: 2, 4, 6, 8 and 10 noise columns with `--scoring corr --alpha 0.5` (QAOA included up to 4),
