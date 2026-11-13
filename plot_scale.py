@@ -1,6 +1,6 @@
 """
 Plot the 30-feature scale check (scale_check.py): accuracy and QUBO energy gap vs budget k.
-Colours per method match the other experiment plots (matplotlib tab10 order used in run_experiments.py).
+Names, colours and styles per method come from plot_style.py, shared by all experiment plots.
 
 Usage:
     python plot_scale.py   -> results/experiments/scale_30_corr_a0.5.png
@@ -10,24 +10,19 @@ import os
 import matplotlib.pyplot as plt
 import pandas as pd
 
+from plot_style import LABELS, STYLES, ordered
 from run_experiments import OUT_DIR
-
-COLORS = {"random": "tab:blue", "top_k": "tab:orange", "greedy": "tab:green",
-          "exact_qubo": "tab:red", "sim_annealing": "tab:purple"}
-LABELS = {"exact_qubo": "exact QUBO optimum", "greedy": "greedy", "sim_annealing": "sim_annealing",
-          "top_k": "top_k", "random": "random"}
 
 df = pd.read_csv(os.path.join(OUT_DIR, "scale_30_corr_a0.5.csv"))
 s = df.groupby(["k", "method"]).agg(acc=("acc_lr", "mean"), sd=("acc_lr", "std"),
                                      gap=("energy_gap", "mean")).reset_index()
 
 fig, (a1, a2) = plt.subplots(1, 2, figsize=(11, 3.9))
-for m in ["random", "top_k", "greedy", "sim_annealing", "exact_qubo"]:
+for m in ordered(s.method.unique()):
     d = s[s.method == m]
-    a1.errorbar(d.k, d.acc, yerr=d.sd, marker="o", capsize=3, lw=2, color=COLORS[m], label=LABELS[m])
-    if m not in ("exact_qubo", "random"):
-        a2.plot(d.k, d.gap, marker="o", lw=2, color=COLORS[m], label=LABELS[m])
-a2.axhline(0, color="tab:red", lw=2, ls="--", label="exact QUBO optimum")
+    a1.errorbar(d.k, d.acc, yerr=d.sd, marker="o", capsize=3, label=LABELS[m], **STYLES[m])
+    if m != "random":
+        a2.plot(d.k, d.gap, marker="o", label=LABELS[m], **STYLES[m])
 a1.set(title="Test accuracy, logistic regression (30 features)", xlabel="feature budget k",
        ylabel="test accuracy (mean ± std over splits)")
 a2.set(title="QUBO energy above the optimum (0 = optimal)", xlabel="feature budget k", ylabel="energy gap")

@@ -30,6 +30,7 @@ from sklearn.preprocessing import StandardScaler
 from baselines import BenchmarkBaselines
 from qaoa import bit_energies, indices, qaoa
 from qubo import brute_force, build_qubo, redundancy_matrix, relevance_scores, simulated_annealing
+from plot_style import LABELS, STYLES, ordered
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 OUT_DIR = os.path.join(ROOT, "results", "experiments")
@@ -164,11 +165,10 @@ def plot(summary, path):
     fig, axes = plt.subplots(1, 2, figsize=(11, 4), sharey=True)
     all_row = summary[summary.method == "all"].iloc[0]
     for ax, col, title in [(axes[0], "acc_rf", "Random forest"), (axes[1], "acc_lr", "Logistic regression")]:
-        for method in summary.method.unique():
-            if method == "all":
-                continue
+        for method in ordered(summary.method.unique()):
             s = summary[summary.method == method]
-            ax.errorbar(s.k, s[f"{col}_mean"], yerr=s[f"{col}_std"], marker="o", capsize=3, label=method)
+            ax.errorbar(s.k, s[f"{col}_mean"], yerr=s[f"{col}_std"], marker="o", capsize=3,
+                        label=LABELS[method], **STYLES[method])
         ax.axhline(all_row[f"{col}_mean"], color="grey", ls="--", label=f"all {int(all_row.k)} features")
         ax.set_title(title)
         ax.set_xlabel("feature budget k")

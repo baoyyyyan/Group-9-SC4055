@@ -12,6 +12,7 @@ import os
 import matplotlib.pyplot as plt
 import pandas as pd
 
+from plot_style import LABELS, STYLES, ordered
 from run_experiments import OUT_DIR
 
 NOISE_LEVELS = [0, 2, 4, 6, 8, 10]
@@ -35,16 +36,19 @@ def plot(df, path, title):
     acc, junk = g.acc_logreg.mean().unstack(0), g.n_noise_selected.mean().unstack(0)
     all_acc = df[df.method == "all"].groupby("noise_features").acc_logreg.mean()
     fig, axes = plt.subplots(1, 2, figsize=(11, 4))
-    for method in acc.columns:
-        style = dict(marker="o", ls="--" if method in ("sim_annealing", "qaoa") else "-")
-        axes[0].plot(acc.index, acc[method], label=method, **style)
-        axes[1].plot(junk.index, junk[method], label=method, **style)
+    for method in ordered(acc.columns):
+        style = dict(marker="o", label=LABELS[method], **STYLES[method])
+        axes[0].plot(acc.index, acc[method], **style)
+        axes[1].plot(junk.index, junk[method], **style)
     axes[0].plot(all_acc.index, all_acc, color="grey", ls=":", marker="s", label="all features")
     axes[0].set_title("Test accuracy, logistic regression (mean over k = 2..5)")
     axes[1].set_title("Junk features picked (mean over k = 2..5)")
     for ax in axes:
         ax.set_xlabel("number of pure-noise features added")
         ax.set_xticks(NOISE_LEVELS)
+    if {"greedy", "top_k"} <= set(junk.columns) and junk[["greedy", "top_k"]].to_numpy().max() == 0:
+        axes[1].annotate("greedy and top-k: 0 (lines overlap)", xy=(NOISE_LEVELS[-1], 0), xytext=(0, 10),
+                         textcoords="offset points", ha="right", va="bottom", fontsize=9, color="tab:green")
     axes[0].legend(fontsize=8)
     fig.suptitle(title)
     fig.tight_layout()
